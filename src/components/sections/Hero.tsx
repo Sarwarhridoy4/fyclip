@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Download, Apple, Monitor } from "lucide-react"
 import { Container } from "@/components/ui/container"
+import Image from "next/image"
 
 export function Hero() {
   return (
@@ -154,9 +155,13 @@ export function Hero() {
               className="absolute -top-4 -right-4 neo-raised p-3 rounded-xl"
             >
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-(--neo-primary) flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">F</span>
-                </div>
+                <Image
+                  src="/images/icon.png"
+                  alt="FyClip"
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
                 <span className="text-sm font-semibold neo-text">FyClip</span>
               </div>
             </motion.div>

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Container } from "@/components/ui/container"
 
 const navigation = {
@@ -30,10 +31,10 @@ export function Footer() {
             {/* Brand */}
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2">
-                <img src="/images/icon.png" alt="FyClip" className="w-10 h-10" />
-                <span className="text-xl font-bold neo-text" style={{ fontFamily: 'Poppins, sans-serif' }}>FyClip</span>
+                <Image src="/images/icon.png" alt="FyClip" width={40} height={40} className="w-10 h-10" />
+                <span className="text-xl font-bold neo-text">FyClip</span>
               </Link>
-              <p className="text-sm neo-text-muted max-w-xs" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-sm neo-text-muted max-w-xs">
                 Your clipboard, supercharged. The most advanced clipboard manager for
                 Linux, Windows, and macOS.
               </p>
@@ -65,14 +66,13 @@ export function Footer() {
             <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-sm font-semibold neo-text" style={{ fontFamily: 'Poppins, sans-serif' }}>Product</h3>
+                  <h3 className="text-sm font-semibold neo-text">Product</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.product.map((item) => (
                       <li key={item.name}>
                         <a
                           href={item.href}
                           className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
-                          style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
                         </a>
@@ -81,14 +81,13 @@ export function Footer() {
                   </ul>
                 </div>
                 <div className="mt-12 md:mt-0">
-                  <h3 className="text-sm font-semibold neo-text" style={{ fontFamily: 'Poppins, sans-serif' }}>Resources</h3>
+                  <h3 className="text-sm font-semibold neo-text">Resources</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.resources.map((item) => (
                       <li key={item.name}>
                         <a
                           href={item.href}
                           className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
-                          style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
                         </a>
@@ -99,14 +98,13 @@ export function Footer() {
               </div>
               <div className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
-                  <h3 className="text-sm font-semibold neo-text" style={{ fontFamily: 'Poppins, sans-serif' }}>Legal</h3>
+                  <h3 className="text-sm font-semibold neo-text">Legal</h3>
                   <ul role="list" className="mt-4 space-y-3">
                     {navigation.legal.map((item) => (
                       <li key={item.name}>
                         <a
                           href={item.href}
                           className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
-                          style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
                         </a>
@@ -121,10 +119,10 @@ export function Footer() {
           {/* Bottom Section */}
           <div className="mt-12 border-t border-(--neo-shadow-dark) pt-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-              <p className="text-sm neo-text-muted" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-sm neo-text-muted">
                 &copy; {new Date().getFullYear()} FyClip. All rights reserved.
               </p>
-              <p className="text-sm neo-text-muted mt-4 md:mt-0" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              <p className="text-sm neo-text-muted mt-4 md:mt-0">
                 Made with ❤️ by{" "}
                 <a
                   href="https://github.com/Sarwarhridoy4"

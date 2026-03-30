@@ -1,34 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, X, Loader2 } from "lucide-react"
 import { Container } from "@/components/ui/container"
-
-const screenshots = [
-  {
-    id: 1,
-    title: "Main Interface",
-    description: "Clean and intuitive clipboard history view",
-    image: "/images/screenshot1.png",
-  },
-  {
-    id: 2,
-    title: "Search & Filter",
-    description: "Powerful search to find any clipboard item instantly",
-    image: "/images/screenshot2.png",
-  },
-  {
-    id: 3,
-    title: "Categories & Tags",
-    description: "Organize your clips with custom categories and tags",
-    image: "/images/screenshot3.png",
-  },
-]
+import { getScreenshots, GitHubContent } from "@/lib/github"
+import Image from "next/image"
 
 export function Screenshots() {
+  const [screenshots, setScreenshots] = useState<GitHubContent[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchScreenshots() {
+      try {
+        setLoading(true)
+        const fetchedScreenshots = await getScreenshots()
+        setScreenshots(fetchedScreenshots)
+        setError(null)
+      } catch (err) {
+        setError("Failed to fetch screenshots")
+        console.error("Error fetching screenshots:", err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchScreenshots()
+  }, [])
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % screenshots.length)
@@ -41,6 +43,44 @@ export function Screenshots() {
   const openLightbox = (index: number) => {
     setCurrentIndex(index)
     setLightboxOpen(true)
+  }
+
+  if (loading) {
+    return (
+      <section id="screenshots" className="py-20 lg:py-32 neo-bg">
+        <Container>
+          <div className="flex items-center justify-center min-h-100">
+            <div className="text-center">
+              <Loader2 className="h-12 w-12 animate-spin text-(--neo-primary) mx-auto mb-4" />
+              <p className="neo-text-muted">Loading screenshots...</p>
+            </div>
+          </div>
+        </Container>
+      </section>
+    )
+  }
+
+  if (error || screenshots.length === 0) {
+    return (
+      <section id="screenshots" className="py-20 lg:py-32 neo-bg">
+        <Container>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold neo-text mb-4">
+              See It in Action
+            </h2>
+            <p className="text-lg neo-text-muted max-w-2xl mx-auto">
+              Unable to load screenshots at this time. Please check back later.
+            </p>
+          </motion.div>
+        </Container>
+      </section>
+    )
   }
 
   return (
@@ -76,13 +116,16 @@ export function Screenshots() {
             >
               <div className="neo-raised p-4 rounded-2xl">
                 <div className="neo-pressed rounded-xl overflow-hidden">
-                  {/* Placeholder for screenshot */}
-                  <div className="aspect-video bg-linear-to-br from-(--neo-primary) to-(--neo-primary-dark) flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <div className="text-6xl mb-4">📋</div>
-                      <h3 className="text-2xl font-bold mb-2">{screenshots[currentIndex].title}</h3>
-                      <p className="text-lg opacity-90">{screenshots[currentIndex].description}</p>
-                    </div>
+                  <div className="aspect-video relative">
+                    {screenshots[currentIndex].download_url && (
+                      <Image
+                        src={screenshots[currentIndex].download_url!}
+                        alt={screenshots[currentIndex].name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -136,7 +179,7 @@ export function Screenshots() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="relative max-w-4xl w-full"
+                className="relative max-w-5xl w-full"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
@@ -149,12 +192,16 @@ export function Screenshots() {
 
                 <div className="neo-raised p-4 rounded-2xl">
                   <div className="neo-pressed rounded-xl overflow-hidden">
-                    <div className="aspect-video bg-linear-to-br from-(--neo-primary) to-(--neo-primary-dark) flex items-center justify-center">
-                      <div className="text-center text-white">
-                        <div className="text-6xl mb-4">📋</div>
-                        <h3 className="text-2xl font-bold mb-2">{screenshots[currentIndex].title}</h3>
-                        <p className="text-lg opacity-90">{screenshots[currentIndex].description}</p>
-                      </div>
+                    <div className="aspect-video relative">
+                      {screenshots[currentIndex].download_url && (
+                        <Image
+                          src={screenshots[currentIndex].download_url!}
+                          alt={screenshots[currentIndex].name}
+                          fill
+                          className="object-contain"
+                          sizes="100vw"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

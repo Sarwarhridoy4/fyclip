@@ -1,10 +1,60 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Download, Star } from "lucide-react"
 import { Container } from "@/components/ui/container"
+import { getRepoInfo, getLatestRelease } from "@/lib/github"
+
+interface Stats {
+  stars: number
+  downloads: number
+}
 
 export function CTA() {
+  const [stats, setStats] = useState<Stats>({ stars: 0, downloads: 0 })
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const [repoInfo, release] = await Promise.all([
+          getRepoInfo(),
+          getLatestRelease()
+        ])
+
+        let totalDownloads = 0
+        if (release?.assets) {
+          totalDownloads = release.assets.reduce(
+            (sum, asset) => sum + (asset.download_count || 0),
+            0
+          )
+        }
+
+        setStats({
+          stars: repoInfo?.stargazers_count || 0,
+          downloads: totalDownloads
+        })
+      } catch (error) {
+        console.error("Failed to fetch stats:", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchStats()
+  }, [])
+
+  const formatNumber = (num: number): string => {
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + "M"
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + "K"
+    }
+    return num.toString()
+  }
+
   return (
     <section className="py-20 lg:py-32 neo-bg">
       <Container>
@@ -13,7 +63,7 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="neo-raised rounded-3xl p-8 lg:p-16 text-center"
+          className="neo-raised rounded-3xl p-8 lg:p-16 text-center relative overflow-hidden"
         >
           {/* Background decoration */}
           <div className="absolute inset-0 -z-10 overflow-hidden rounded-3xl">
@@ -68,39 +118,25 @@ export function CTA() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="grid grid-cols-2 gap-8"
           >
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Star className="h-5 w-5 text-yellow-500" />
-                <span className="text-3xl font-bold neo-text">500+</span>
+                <span className="text-3xl font-bold neo-text">
+                  {isLoading ? "..." : formatNumber(stats.stars)}
+                </span>
               </div>
               <p className="text-sm neo-text-muted">GitHub Stars</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Download className="h-5 w-5 text-(--neo-primary)" />
-                <span className="text-3xl font-bold neo-text">10K+</span>
+                <span className="text-3xl font-bold neo-text">
+                  {isLoading ? "..." : formatNumber(stats.downloads)}
+                </span>
               </div>
               <p className="text-sm neo-text-muted">Downloads</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg className="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <span className="text-3xl font-bold neo-text">1K+</span>
-              </div>
-              <p className="text-sm neo-text-muted">Active Users</p>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <svg className="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-3xl font-bold neo-text">99%</span>
-              </div>
-              <p className="text-sm neo-text-muted">Satisfaction</p>
             </div>
           </motion.div>
         </motion.div>
