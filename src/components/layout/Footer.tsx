@@ -23,7 +23,7 @@ const navigation = {
 
 export function Footer() {
   return (
-    <footer className="neo-bg border-t border-[var(--neo-shadow-dark)]">
+    <footer className="neo-bg border-t border-(--neo-shadow-dark)">
       <Container>
         <div className="py-12 lg:py-16">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -71,7 +71,7 @@ export function Footer() {
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-sm neo-text-muted hover:text-[var(--neo-primary)] transition-colors"
+                          className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
                           style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
@@ -87,7 +87,7 @@ export function Footer() {
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-sm neo-text-muted hover:text-[var(--neo-primary)] transition-colors"
+                          className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
                           style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
@@ -105,7 +105,7 @@ export function Footer() {
                       <li key={item.name}>
                         <a
                           href={item.href}
-                          className="text-sm neo-text-muted hover:text-[var(--neo-primary)] transition-colors"
+                          className="text-sm neo-text-muted hover:text-(--neo-primary) transition-colors"
                           style={{ fontFamily: 'Poppins, sans-serif' }}
                         >
                           {item.name}
@@ -119,7 +119,7 @@ export function Footer() {
           </div>
 
           {/* Bottom Section */}
-          <div className="mt-12 border-t border-[var(--neo-shadow-dark)] pt-8">
+          <div className="mt-12 border-t border-(--neo-shadow-dark) pt-8">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <p className="text-sm neo-text-muted" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 &copy; {new Date().getFullYear()} FyClip. All rights reserved.
@@ -130,7 +130,7 @@ export function Footer() {
                   href="https://github.com/Sarwarhridoy4"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--neo-primary)] hover:underline"
+                  className="text-(--neo-primary) hover:underline"
                 >
                   Sarwar Hridoy
                 </a>

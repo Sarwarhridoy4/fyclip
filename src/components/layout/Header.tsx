@@ -18,7 +18,7 @@ export function Header() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <header className="sticky top-0 z-50 neo-bg border-b border-[var(--neo-shadow-dark)]">
+    <header className="sticky top-0 z-50 neo-bg border-b border-(--neo-shadow-dark)">
       <Container>
         <nav className="flex items-center justify-between py-4" aria-label="Global">
           {/* Logo */}
@@ -35,7 +35,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium neo-text-muted hover:text-[var(--neo-primary)] transition-colors"
+                className="text-sm font-medium neo-text-muted hover:text-(--neo-primary) transition-colors"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 {item.name}
@@ -115,13 +115,13 @@ export function Header() {
                 </button>
               </div>
               <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-[var(--neo-shadow-dark)]">
+                <div className="-my-6 divide-y divide-(--neo-shadow-dark)">
                   <div className="space-y-2 py-6">
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 neo-text hover:bg-[var(--neo-shadow-light)]"
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 neo-text hover:bg-(--neo-shadow-light)"
                         onClick={() => setMobileMenuOpen(false)}
                         style={{ fontFamily: 'Poppins, sans-serif' }}
                       >
