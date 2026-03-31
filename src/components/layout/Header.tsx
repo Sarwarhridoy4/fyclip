@@ -21,11 +21,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 neo-bg border-b border-(--neo-shadow-dark)">
       <Container>
-        <nav className="flex items-center justify-between py-4" aria-label="Global">
+        <nav className="flex items-center justify-between py-4" aria-label="Main navigation">
           {/* Logo */}
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2">
-              <Image src="/images/icon.png" alt="FyClip" width={40} height={40} className="w-10 h-10" />
+            <Link href="/" className="-m-1.5 p-1.5 flex items-center gap-2" aria-label="FyClip - Advanced Clipboard Manager">
+              <Image src="/images/icon.png" alt="FyClip Logo" width={40} height={40} className="w-10 h-10" />
               <span className="text-xl font-bold neo-text">FyClip</span>
             </Link>
           </div>

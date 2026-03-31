@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Viewport } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,22 +22,53 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  colorScheme: "light dark",
+};
+
 export const metadata: Metadata = {
-  title: "FyClip - Advanced Clipboard Manager",
-  description: "Your clipboard, supercharged. The most advanced clipboard manager for Linux, Windows, and macOS.",
-  keywords: ["clipboard manager", "clipboard history", "productivity", "linux", "windows", "macos"],
+  title: "FyClip - Advanced Clipboard Manager for Linux, Windows & macOS",
+  description: "FyClip is the most advanced open-source clipboard manager for Linux, Windows, and macOS. Featuring unlimited clipboard history, smart search, image support, and productivity tools.",
+  keywords: [
+    "clipboard manager",
+    "clipboard history",
+    "productivity software",
+    "linux clipboard manager",
+    "windows clipboard manager",
+    "macos clipboard manager",
+    "open source clipboard",
+    "clipboard utility",
+    "copy paste manager",
+    "clipboard sync",
+    "image clipboard",
+    "text clipboard manager",
+  ],
   authors: [{ name: "Sarwar Hridoy" }],
+  creator: "Sarwar Hridoy",
+  publisher: "FyClip",
+  formatDetection: {
+    telephone: false,
+  },
+  metadataBase: new URL("https://fyclip.vercel.app"),
+  alternates: {
+    canonical: "https://fyclip.vercel.app",
+  },
   openGraph: {
-    title: "FyClip - Advanced Clipboard Manager",
-    description: "Your clipboard, supercharged. The most advanced clipboard manager for Linux, Windows, and macOS.",
-    url: "https://fyclip.com",
+    title: "FyClip - Advanced Clipboard Manager for Linux, Windows & macOS",
+    description: "The most advanced open-source clipboard manager with unlimited history, smart search, and image support. Available for Linux, Windows, and macOS.",
+    url: "https://fyclip.vercel.app",
     siteName: "FyClip",
     images: [
       {
-        url: "https://fyclip.com/og-image.png",
+        url: "https://fyclip.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "FyClip - Advanced Clipboard Manager",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -45,8 +77,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FyClip - Advanced Clipboard Manager",
-    description: "Your clipboard, supercharged. The most advanced clipboard manager for Linux, Windows, and macOS.",
-    images: ["https://fyclip.com/og-image.png"],
+    description: "The most advanced open-source clipboard manager with unlimited history, smart search, and image support.",
+    images: ["https://fyclip.vercel.app/og-image.png"],
+    creator: "@SarwarHridoy",
   },
   robots: {
     index: true,

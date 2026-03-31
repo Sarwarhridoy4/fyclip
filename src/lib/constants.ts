@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "FyClip",
   description: "Your clipboard, supercharged. The most advanced clipboard manager for Linux, Windows, and macOS.",
-  url: "https://fyclip.com",
-  ogImage: "https://fyclip.com/og-image.png",
+  url: "https://fyclip.vercel.app",
+  ogImage: "https://fyclip.vercel.app/og-image.png",
   links: {
     github: "https://github.com/Sarwarhridoy4/FyClip---Advanced-Clipboard-Manager",
     discord: "#",
