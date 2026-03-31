@@ -300,6 +300,54 @@ export function Download() {
               ))}
             </div>
 
+            {/* Snapcraft Download */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-8"
+            >
+              <div className="neo-card">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 neo-raised rounded-xl flex items-center justify-center text-(--neo-primary)">
+                    <svg className="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 3c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold neo-text">Snap Store</h3>
+                    <p className="text-sm neo-text-muted">Install via Snapcraft</p>
+                  </div>
+                </div>
+
+                <div className="neo-flat p-4 rounded-xl">
+                  <p className="neo-text-muted mb-4">
+                    FyClip is available on the Snap Store for easy installation on Linux distributions that support Snap packages.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="https://snapcraft.io/fyclip"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="neo-btn-primary flex items-center justify-center gap-2 px-6 py-3"
+                    >
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 3c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z"/>
+                      </svg>
+                      <span>Get it from the Snap Store</span>
+                    </a>
+                    <div className="neo-flat px-4 py-2 rounded-lg">
+                      <p className="text-xs neo-text-muted">
+                        Install command:
+                      </p>
+                      <code className="text-sm font-mono neo-text">snap install fyclip</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Release Notes */}
             {selectedRelease.body && (
               <motion.div

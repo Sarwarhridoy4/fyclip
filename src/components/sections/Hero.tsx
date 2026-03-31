@@ -98,6 +98,17 @@ export function Hero() {
                 <Apple className="h-4 w-4" />
                 <span className="text-sm">macOS</span>
               </div>
+              <a
+                href="https://snapcraft.io/fyclip"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neo-badge flex items-center gap-2 hover:bg-(--neo-shadow-light) transition-colors"
+              >
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 3c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 2c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5z"/>
+                </svg>
+                <span className="text-sm">Snap Store</span>
+              </a>
             </motion.div>
           </motion.div>
 
